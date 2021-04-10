@@ -1,5 +1,5 @@
 # Heat
-I recently came across this beautiful YouTube playlist, where I had the opportunity to learn a little
+I recently came across this beautiful [YouTube playlist](https://www.youtube.com/playlist?list=PLZHQObOWTQDNPOjrT6KVlfJuKtYTftqH6), where I had the opportunity to learn a little
 more about differential equations, so I decided to write this program with the hope of consolidating
 that knowledge and to learn some numerical methods for solving PDEs.
 
