@@ -1,1 +1,11 @@
-./bin/main
+*.o
+/obj
+/bin
+/cmake-build-default/
+CMakeCache.txt
+CMakeFiles
+Makefile
+/build
+/cmake-*/
+.idea
+*.pdf

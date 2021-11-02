@@ -1,7 +1,7 @@
 #ifndef SIMULATOR_H
 #define SIMULATOR_H
 
-#include <SDL2/SDL.h>
+#include "SDL.h"
 #include <vector>
 #include "surface.h"
 
