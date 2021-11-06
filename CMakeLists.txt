@@ -26,7 +26,7 @@ include_directories(${SDL2_INCLUDE_DIRS})
 add_library(${LIBRARY_NAME} STATIC ${INCLUDE_HEADERS} ${HEADERS} ${SOURCES})
 target_link_libraries(${LIBRARY_NAME} ${SDL2_LIBRARIES})
 target_compile_features(${LIBRARY_NAME} PUBLIC cxx_std_17)
-# set_target_properties(${LIBRARY_NAME} PROPERTIES CUDA_SEPARABLE_COMPILATION ON CUDA_ARCHITECTURES 50 75 80)
+set_target_properties(${LIBRARY_NAME} PROPERTIES CUDA_SEPARABLE_COMPILATION ON CUDA_ARCHITECTURES 50 75 80)
 
 # +=============================================+
 # +========+ Setup compilers options +==========+
@@ -38,7 +38,7 @@ set(CMAKE_CXX_FLAGS_RELEASE "-Wall -O3")
 # +=============================================+
 # +=========+ Build the executable +============+
 # +=============================================+
-add_executable(${EXECUTABLE_NAME} src/heat.cpp)
-# set_property(TARGET ${EXECUTABLE_NAME} PROPERTY CUDA_SEPARABLE_COMPILATION ON)
+add_executable(${EXECUTABLE_NAME} src/main.cpp)
+set_property(TARGET ${EXECUTABLE_NAME} PROPERTY CUDA_SEPARABLE_COMPILATION ON)
 add_dependencies(${EXECUTABLE_NAME} ${LIBRARY_NAME})
 target_link_libraries(${EXECUTABLE_NAME} PRIVATE ${LIBRARY_NAME})
