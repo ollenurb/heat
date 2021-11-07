@@ -9,16 +9,15 @@ class Engine {
 // Screen should be able to be accessed by the implementation specific code
 protected:
   SDL_Texture *screen;
-
-private:
   // Engine-related variables
   const int WIDTH;
   const int HEIGHT;
-  bool running;
 
+private:
+  bool running;
   // SDL-specific references
-  SDL_Window *window;
-  SDL_Renderer *renderer;
+  SDL_Window *window{};
+  SDL_Renderer *renderer{};
 
   // Engine-related functions
   void process_events();

@@ -5,9 +5,17 @@
 
 #include "Engine.hpp"
 
+/* Define precision */
+typedef float Real;
+
 class HeatSimulation : public Engine {
+private:
+  Real *device_grid;
+  Real *host_grid;
+  Real alpha = 1.0;
 public:
-  HeatSimulation(int w, int h) : Engine(w, h) { }
+  HeatSimulation(int, int);
+  ~HeatSimulation();
   void step() override;
   void render() override;
 };

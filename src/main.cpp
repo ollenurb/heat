@@ -8,6 +8,6 @@
 int main()
 {
   std::cout << "Hello world boys!" << std::endl;
-  HeatSimulation simulation(100, 100);
+  HeatSimulation simulation(600, 300);
   simulation.run();
 }
