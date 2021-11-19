@@ -4,7 +4,7 @@
 #include "Engine.hpp"
 #include <iostream>
 
-#define UPDATE_STEPS 50
+#define UPDATE_STEPS 20
 
 Engine::Engine(int w, int h) : WIDTH(w), HEIGHT(h) {
   running = false;

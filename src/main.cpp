@@ -1,13 +1,10 @@
 //
 // Created by matteo on 11/4/21.
 //
-
-#include <iostream>
-#include "HeatSimulation.cuh"
+#include "HeatSimulation.hpp"
 
 int main()
 {
-  std::cout << "Hello world boys!" << std::endl;
-  HeatSimulation simulation(600, 300);
+  HeatSimulation simulation(1000, 600);
   simulation.run();
 }

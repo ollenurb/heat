@@ -21,7 +21,6 @@ private:
 
   // Engine-related functions
   void process_events();
-  void render(SDL_Texture*);
 
 public:
   Engine(int, int);
