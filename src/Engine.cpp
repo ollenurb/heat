@@ -20,7 +20,6 @@ void Engine::run() {
   running = true;
   while (running) {
     process_events();
-    /* TODO: Change 10 with AFTER_NFRAMES */
     if (n_frame == UPDATE_STEPS) {
       render();
       SDL_RenderClear(renderer);

@@ -13,7 +13,7 @@ private:
   Real *host_grid;
   Real alpha = 1.0;
   Real gamma;
-  Gpu *device;
+  Gpu *device{};
 
   /* Simulation-specific functions and constants */
   unsigned int temp_to_rgb(Real temp) const;

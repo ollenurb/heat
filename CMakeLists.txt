@@ -13,8 +13,19 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/obj")
 # +=============================================+
 # +====+ Setup Headers, Sources and macros +====+
 # +=============================================+
-file(GLOB HEADERS src/*.hpp  src/*.cuh)
-file(GLOB SOURCES src/*.cpp  src/*.cu )
+option(GPU "Enable GPU acceleration" OFF)
+set(GPU ON)
+
+if (GPU)
+    add_compile_definitions(GPU_ENABLED)
+    file(GLOB HEADERS src/*.hpp src/*.cuh)
+    file(GLOB SOURCES src/*.cpp src/*.cu)
+    message(STATUS "GPU acceleration option detected")
+else ()
+    file(GLOB HEADERS src/*.hpp)
+    file(GLOB SOURCES src/*.cpp)
+    message(STATUS "GPU acceleration option not detected - Skipping")
+endif ()
 
 # +=============================================+
 # +=========+ Setup libraries targets +=========+

@@ -14,25 +14,21 @@ HeatSimulation::HeatSimulation(int w, int h) : Engine(w, h) {
   gamma = (alpha * 1.0f)/(4.0f * alpha); // gamma = (alpha * dt) / (4 * alpha)
   host_grid = new Real[w * h];
 
+  // TODO: TO remove
   // Initialize the grid
   for(int i = 0; i < w * h; i++) {
     host_grid[i] = 0.0f;
-    if(i > 100 && i < 200) {
-      host_grid[i] = 100.0f;
-    }
+    if (i > 100 && i < 200) host_grid[i] = 100.0f;
   }
 
-#ifdef __CUDA_ARCH__
-  printf("Using CUDA hardware acceleration\n");
+#ifdef GPU_ENABLED
   device = new Gpu(w, h, gamma, host_grid);
-#else
-  printf("CUDA Hardware not detected, using CPU\n");
 #endif
 }
 
 HeatSimulation::~HeatSimulation() {
   free(host_grid);
-#ifdef __CUDA_ARCH__
+#ifdef GPU_ENABLED
   free(device);
 #endif
 }
@@ -68,7 +64,7 @@ void HeatSimulation::render() {
  * http://www.u.arizona.edu/~erdmann/mse350/_downloads/2D_heat_equation.pdf
  */
 void HeatSimulation::step() {
-#ifdef __CUDA_ARCH__
+#ifdef GPU_ENABLED
    device->compute_step(host_grid);
 #else
   for(int x = 1; x < WIDTH-1; x++) {
