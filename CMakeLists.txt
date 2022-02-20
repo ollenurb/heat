@@ -34,6 +34,11 @@ set(LIBRARY_NAME Engine)
 find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
 
+# +=============================================+
+# +========+ Setup libraries headers +==========+
+# +=============================================+
+set(INCLUDE_HEADERS lib/csv.h)
+
 add_library(${LIBRARY_NAME} STATIC ${INCLUDE_HEADERS} ${HEADERS} ${SOURCES})
 target_link_libraries(${LIBRARY_NAME} ${SDL2_LIBRARIES})
 target_compile_features(${LIBRARY_NAME} PUBLIC cxx_std_17)

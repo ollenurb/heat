@@ -18,5 +18,5 @@ public:
   Gpu(unsigned int, unsigned int, Real, Real*);
   ~Gpu();
   void compute_step(Real *);
-  void mem_sync(Real *host_grid);
+  void sync(Real* host_grid);
 };

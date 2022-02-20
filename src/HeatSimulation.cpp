@@ -82,9 +82,19 @@ void HeatSimulation::step() {
 #endif
 }
 
-void HeatSimulation::click(int x, int y) {
-  host_grid[index(x, y)] += 10.0f;
-  printf("Received click %d, %d\n", x, y);
+void HeatSimulation::set_temp_data(const std::vector<std::tuple<int, int, Real>>& temp_data) {
+  for(auto e : temp_data) {
+    const int x = std::get<0>(e);
+    const int y = std::get<1>(e);
+    if(x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT) {
+      host_grid[index(x, y)] = std::get<2>(e);
+    }
+  }
+  _render();
+  refresh();
+#ifdef GPU_ENABLED
+  device->sync(host_grid);
+#endif
 }
 
 /*
@@ -101,3 +111,5 @@ unsigned int HeatSimulation::temp_to_rgb(Real temp) const {
   unsigned b = std::floor(std::clamp<Real>(b_val, 0, 255));
   return (0xFF000000 | (r << 16) | (g << 8) | b);
 }
+
+

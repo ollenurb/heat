@@ -14,9 +14,8 @@ protected:
   const int HEIGHT;
 
 private:
-  bool open;
-  bool running;
-  bool drawing;
+  bool open = false;
+  bool running = false;
   // SDL-specific references
   SDL_Window *window{};
   SDL_Renderer *renderer{};
@@ -34,6 +33,4 @@ public:
   // Simulation-Specific functions
   virtual void step() = 0;
   virtual void render() = 0;
-  virtual void click(int x, int y) = 0;
-
 };

@@ -6,7 +6,6 @@
 #define UPDATE_STEPS 60
 
 Engine::Engine(int w, int h) : WIDTH(w), HEIGHT(h) {
-  open = running = false;
   SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &window, &renderer);
   screen = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, WIDTH, HEIGHT);
 }
@@ -29,9 +28,6 @@ void Engine::start() {
       }
       step();
       n_updates += 1;
-    } else {
-      render();
-      refresh();
     }
   }
 }
@@ -53,18 +49,7 @@ void Engine::process_events() {
       case SDL_QUIT:
         open = false;
         break;
-      case SDL_MOUSEBUTTONDOWN:
-        drawing = true;
-        break;
-      case SDL_MOUSEBUTTONUP:
-        drawing = false;
-        break;
     }
-  }
-  if(drawing) {
-    int x, y;
-    SDL_GetMouseState(&x, &y);
-    click(x, y);
   }
 }
 

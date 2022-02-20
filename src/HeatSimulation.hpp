@@ -6,6 +6,7 @@
 #include "Engine.hpp"
 #include "Globals.hpp"
 #include "Gpu.cuh"
+#include <vector>
 
 class HeatSimulation : public Engine {
 private:
@@ -30,7 +31,7 @@ private:
 public:
   HeatSimulation(int, int);
   ~HeatSimulation();
+  void set_temp_data(const std::vector<std::tuple<int, int, Real>>& temp_data);
   void step() override;
   void render() override;
-  void click(int x, int y) override;
 };
