@@ -7,7 +7,6 @@
 #include "Globals.hpp"
 #include "Gpu.cuh"
 
-
 class HeatSimulation : public Engine {
 private:
   Real *host_grid;
@@ -15,11 +14,15 @@ private:
   Real gamma;
   Gpu *device{};
 
+  /* I still need to figure it out */
   /* Simulation-specific functions and constants */
   unsigned int temp_to_rgb(Real temp) const;
-  /* Maximum&Minimum allowed temperatures by the simulator */
+  void _render();
+
+  /* Maximum&Minimum allowed temperatures by the simulation */
   Real MAX_TEMP = 100.0;
   Real MIN_TEMP = 0.0;
+
   /* Define maximum hot/cold color */
   const SDL_Color hot_color = {3, 157, 252, SDL_ALPHA_OPAQUE};
   const SDL_Color cold_color = {252, 94, 3, SDL_ALPHA_OPAQUE};
@@ -29,4 +32,5 @@ public:
   ~HeatSimulation();
   void step() override;
   void render() override;
+  void click(int x, int y) override;
 };

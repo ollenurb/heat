@@ -12,12 +12,12 @@ and to learn some numerical methods for solving
 [PDEs](https://en.wikipedia.org/wiki/Partial_differential_equation).
 
 ## Running the program 
-You can run the program either by using the [Nix](https://nixos.org/) package
+You can start the program either by using the [Nix](https://nixos.org/) package
 manager (*recommended*) or Docker.
 
 ### Nix
 If you are already using Nix you should probably already know the drill.  
-Simply run `nix-shell` inside the directory and you are done.
+Simply start `nix-shell` inside the directory and you are done.
 
 ### Docker
 TODO

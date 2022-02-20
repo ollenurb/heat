@@ -14,20 +14,26 @@ protected:
   const int HEIGHT;
 
 private:
+  bool open;
   bool running;
+  bool drawing;
   // SDL-specific references
   SDL_Window *window{};
   SDL_Renderer *renderer{};
 
   // Engine-related functions
   void process_events();
+  void handle_key(SDL_Keycode);
 
 public:
   Engine(int, int);
   ~Engine();
-  void run();
+  void start();
+  void refresh();
 
   // Simulation-Specific functions
   virtual void step() = 0;
   virtual void render() = 0;
+  virtual void click(int x, int y) = 0;
+
 };

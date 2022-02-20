@@ -11,15 +11,13 @@
  * HeatSimulation constructor
  */
 HeatSimulation::HeatSimulation(int w, int h) : Engine(w, h) {
-  gamma = (alpha * 1.0f)/(4.0f * alpha); // gamma = (alpha * dt) / (4 * alpha)
+  gamma = alpha/(4.0f * alpha); // gamma = (alpha * dt) / (4 * alpha)
   host_grid = new Real[w * h];
 
-  // TODO: TO remove
   // Initialize the grid
-  for(int i = 0; i < w * h; i++) {
-    host_grid[i] = 0.0f;
-    if (i > 100 && i < 200) host_grid[i] = 100.0f;
-  }
+  for(int i = 0; i < w * h; i++) { host_grid[i] = 0.0f; }
+  _render();
+  refresh();
 
 #ifdef GPU_ENABLED
   device = new Gpu(w, h, gamma, host_grid);
@@ -34,10 +32,10 @@ HeatSimulation::~HeatSimulation() {
 }
 
 /*
- * Gets called by the Engine at every render step
+ * Transform the values into RGB colors
  * The screen is an SDL_Texture object
  */
-void HeatSimulation::render() {
+void HeatSimulation::_render() {
   void *pixels;
   int pitch;
   Uint32 *dest;
@@ -56,6 +54,12 @@ void HeatSimulation::render() {
 }
 
 /*
+ * Had to do that since virtual function
+ * weren't allowed inside constructions
+ */
+void HeatSimulation::render() { _render(); }
+
+/*
  * Gets called by the Engine at every simulation step
  * We need to calculate the temperature state at t + \delta t
  * Since I'm assuming that \delta x = \delta y = 1 to simplify things, then
@@ -65,7 +69,7 @@ void HeatSimulation::render() {
  */
 void HeatSimulation::step() {
 #ifdef GPU_ENABLED
-   device->compute_step(host_grid);
+  device->compute_step(host_grid);
 #else
   for(int x = 1; x < WIDTH-1; x++) {
     for(int y = 1; y < HEIGHT-1; y++) {
@@ -76,6 +80,11 @@ void HeatSimulation::step() {
     }
   }
 #endif
+}
+
+void HeatSimulation::click(int x, int y) {
+  host_grid[index(x, y)] += 10.0f;
+  printf("Received click %d, %d\n", x, y);
 }
 
 /*

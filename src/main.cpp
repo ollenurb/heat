@@ -3,8 +3,7 @@
 //
 #include "HeatSimulation.hpp"
 
-int main()
-{
+int main() {
   HeatSimulation simulation(1000, 600);
-  simulation.run();
+  simulation.start();
 }

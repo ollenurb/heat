@@ -56,3 +56,6 @@ void Gpu::compute_step(Real *host_grid) {
   cudaMemcpy(host_grid, device_grid, sizeof(Real) * (WIDTH * HEIGHT), cudaMemcpyDeviceToHost);
 }
 
+void Gpu::mem_sync(Real *host_grid) {
+  cudaMemcpy(device_grid, host_grid, sizeof(Real) * (WIDTH * HEIGHT), cudaMemcpyHostToDevice);
+}
